@@ -17,20 +17,25 @@ public class PowerBall{
 			boolean jack = false;
 			int trials = 0;
 			int grand = 0;
+			// while loop stops until a jackpot is found
 			while (!jack){
 				
 				ticket = generateTicket();
+				//get a ticket combination
 				int money = showMeTheMoney(ticket, win);
+				//identify the conbination, returns -2 when a jackpot is gotten
 				grand += ticketPrice;
 				trials++;
 				jack = money == -2;
+				
 			}
 			System.out.println("you got " + grand + " dollars in " + trials + " times!!!");
-			System.out.println(trials/got4);
-			System.out.println(trials/got7);
-			System.out.println(trials/got100);
-			System.out.println(trials/got50k);
-			System.out.println(trials/gotmil);
+			//returns the frequency of getting money(doesn't work as intended)
+			// System.out.println(trials/got4);
+			// System.out.println(trials/got7);
+			// System.out.println(trials/got100);
+			// System.out.println(trials/got50k);
+			// System.out.println(trials/gotmil);
 
 		}
 	}
@@ -53,7 +58,6 @@ public class PowerBall{
 				bucket[num] = true;
 			}
 
-			// System.out.println("gen");
 		}
 		result[5] = (int) (Math.random() * 26) + 1;
 		return result;
