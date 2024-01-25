@@ -7,25 +7,25 @@ public class PowerBall {
         int[][] order = new int[6][100000];
         winningNumbers = generateTicket();
         System.out.println("Here are the winning Numbers");
-        for(int i =0;i<5;i++){
-            System.out.print(winningNumbers[i]+" ");
+        for(int i=0; i<5; i++){
+            System.out.print(winningNumbers[i] + " ");
         }
-        System.out.print("["+winningNumbers[5]+"]");
+        System.out.print("[" + winningNumbers[5] + "]");
         System.out.println("\n>>>>>>>>>>>>><<<<<<<<<<<<");
-        for(int i =1;i<=100000;i++){
+        for(int i=1; i<=100000; i++){
             ticket = generateTicket();
-            System.out.print(i+") ");
-            for(int j =0;j<5;j++){
-                System.out.print(ticket[j]+" ");
+            System.out.print(i + ") ");
+            for(int j =0; j<5; j++){
+                System.out.print(ticket[j] + " ");
             }
-            System.out.print("["+ticket[5]+"]");
+            System.out.print("[" + ticket[5] + "]");
             reward[i-1] = showMeTheMoney(ticket, winningNumbers);
-            System.out.print("\t Reward = $"+reward[i-1]+"\n");
+            System.out.print("\t Reward = $" + reward[i-1] + "\n");
         }
         System.out.print(">>>>>>>>>>>>><<<<<<<<<<<<<<<");
         int[] counter = new int[6];
-        for(int i = 0;i<100000;i++){
-            if(reward[i]==40000000){
+        for(int i=0; i<100000; i++){
+            if(reward[i] == 40000000){
                 order[0][counter[0]] = i;
                 counter[0]++;
             }
@@ -53,37 +53,37 @@ public class PowerBall {
         System.out.println("\nThe number of reward for $40,000,000 is shown below");
         System.out.println(counter[0] + "time(s)");
         System.out.println("The order are listed below");
-        for(int i=0;i<counter[0];i++){
+        for(int i=0; i<counter[0]; i++){
             System.out.println(order[0][i] + 1 + ")");
         }
         System.out.println("\nThe number of reward for $1,000,000 is shown below");
         System.out.println(counter[1] + "time(s)");
         System.out.println("The order are listed below");
-        for(int i=0;i<counter[1];i++){
+        for(int i=0; i<counter[1]; i++){
             System.out.println(order[1][i] + 1 + ")");
         }
         System.out.println("\nThe number of reward for $50,000 is shown below");
         System.out.println(counter[2] + "time(s)");
         System.out.println("The order are listed below");
-        for(int i=0;i<counter[2];i++){
+        for(int i=0; i<counter[2]; i++){
             System.out.println(order[2][i] + 1 + ")");
         }
         System.out.println("\nThe number of reward for $100 is shown below");
         System.out.println(counter[3] + "time(s)");
         System.out.println("The order are listed below");
-        for(int i=0;i<counter[3];i++){
+        for(int i=0; i<counter[3]; i++){
             System.out.println(order[3][i] + 1 + ")");
         }
         System.out.println("\nThe number of reward for $7 is shown below");
         System.out.println(counter[4] + "time(s)");
         System.out.println("The order are listed below");
-        for(int i=0;i<counter[4];i++){
+        for(int i=0; i<counter[4]; i++){
             System.out.println(order[4][i] + 1 + ")");
         }
         System.out.println("\nThe number of reward for $4 is shown below");
         System.out.println(counter[5] + "time(s)");
         System.out.println("The order are listed below");
-        for(int i=0;i<counter[5];i++){
+        for(int i=0; i<counter[5]; i++){
             System.out.println(order[5][i] + 1 + ")");
         }
     }
