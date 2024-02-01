@@ -1,148 +1,32 @@
-public class PowerBall{
-	public static void RunPowerBall(){
-		int[] win = {1,2,3,4,5,6};
-		
-		
-		int ticketPrice = 2; 
-		int[] ticket = new int[6];
-		int jackpots = 3;
-
-		for(int i = 1; i<= jackpots; i++){
-			
-			int got4 = 0;
-			int got7 = 0;
-			int got100 = 0;
-			int got50k = 0;
-			int gotmil = 0;
-			boolean jack = false;
-			int trials = 0;
-			int grand = 0;
-			while (!jack){
-				
-				ticket = generateTicket();
-				int money = showMeTheMoney(ticket, win);
-				grand += ticketPrice;
-				trials++;
-				jack = money == -2;
-			}
-			System.out.println("you got " + grand + " dollars in " + trials + " times!!!");
-			System.out.println(trials/got4);
-			System.out.println(trials/got7);
-			System.out.println(trials/got100);
-			System.out.println(trials/got50k);
-			System.out.println(trials/gotmil);
-
-		}
-	}
-
-	public static int[] generateTicket(){
-		boolean[] bucket = new boolean[100];
-		int[] result = new int[10];
-		boolean repeat = true;
-		int num = 0;
-		while(repeat){
-			repeat = false;
-			for (int i = 0; i<5; i++){
-				bucket[num] = false;
-				num = (int) (Math.random() * 69) + 1;
-				if (bucket[num]){
-					repeat = true;
-				}
-				
-				result[i] = num;
-				bucket[num] = true;
-			}
-
-			// System.out.println("gen");
-		}
-		result[5] = (int) (Math.random() * 26) + 1;
-		return result;
-	}
-
-	public static int showMeTheMoney(int[] ticket, int[] winningNumbers){
-		boolean[] bucket = new boolean[100];
-		int whiteMatch = 0;
-		boolean red = ticket[5] == winningNumbers[5];
-
-		for(int i = 0; i < 5; i++){
-			bucket[ticket[i]] = true;
-		}
-		// for (int i = 1; i<= 69; i++){
-		// 	System.out.print(i +" "+ bucket[i]+" ");
-		// }
-
-		for(int i = 0; i<5; i++){
-			if (bucket[winningNumbers[i]]){
-				whiteMatch++;
-			}
-		}
-		if (whiteMatch == 5){
-			if (red){
-				return -2;
-			}
-			else{
-				return 1000000;
-			}
-		}
-		if (whiteMatch == 4){
-			if (red){
-				return 50000;
-			}
-			return 100;
-		}
-		if (whiteMatch == 3){
-			if (red){
-				return 100;
-			}
-			return 7;
-		}
-		if (whiteMatch == 2 && red){
-			return 7;
-		}
-		if (red){
-			return 4;
-		}
-		
-		return 0;
-
-	}
-	public static void main(String[] args){
-		PowerBall.RunPowerBall();
-
-
-	}
-
-}
-
-
 public class PowerBall {
     //Run 100000 possible tickets and winning numbers
     public static void main(String args[]) {
+        int Number = 10000000;
         int[] ticket = new int[6];
         int[] winningNumbers = new int[6];
-        int[] reward = new int[100000];
-        int[][] order = new int[6][100000];
+        int[] reward = new int[Number];
+        int[][] order = new int[6][Number];
         winningNumbers = generateTicket();
         System.out.println("Here are the winning Numbers");
-        for(int i=0; i<5; i++){
-            System.out.print(winningNumbers[i] + " ");
+        for(int i =0;i<5;i++){
+            System.out.print(winningNumbers[i]+" ");
         }
-        System.out.print("[" + winningNumbers[5] + "]");
+        System.out.print("["+winningNumbers[5]+"]");
         System.out.println("\n>>>>>>>>>>>>><<<<<<<<<<<<");
-        for(int i=1; i<=100000; i++){
+        for(int i =1;i<= Number;i++){
             ticket = generateTicket();
-            System.out.print(i + ") ");
-            for(int j =0; j<5; j++){
-                System.out.print(ticket[j] + " ");
+            System.out.print(i+") ");
+            for(int j =0;j<5;j++){
+                System.out.print(ticket[j]+" ");
             }
-            System.out.print("[" + ticket[5] + "]");
+            System.out.print("["+ticket[5]+"]");
             reward[i-1] = showMeTheMoney(ticket, winningNumbers);
-            System.out.print("\t Reward = $" + reward[i-1] + "\n");
+            System.out.print("\t Reward = $"+reward[i-1]+"\n");
         }
         System.out.print(">>>>>>>>>>>>><<<<<<<<<<<<<<<");
         int[] counter = new int[6];
-        for(int i=0; i<100000; i++){
-            if(reward[i] == 40000000){
+        for(int i = 0;i<Number;i++){
+            if(reward[i]==40000000){
                 order[0][counter[0]] = i;
                 counter[0]++;
             }
@@ -170,38 +54,42 @@ public class PowerBall {
         System.out.println("\nThe number of reward for $40,000,000 is shown below");
         System.out.println(counter[0] + "time(s)");
         System.out.println("The order are listed below");
-        for(int i=0; i<counter[0]; i++){
+        for(int i=0;i<counter[0];i++){
             System.out.println(order[0][i] + 1 + ")");
         }
         System.out.println("\nThe number of reward for $1,000,000 is shown below");
         System.out.println(counter[1] + "time(s)");
         System.out.println("The order are listed below");
-        for(int i=0; i<counter[1]; i++){
+        for(int i=0;i<counter[1];i++){
             System.out.println(order[1][i] + 1 + ")");
         }
         System.out.println("\nThe number of reward for $50,000 is shown below");
         System.out.println(counter[2] + "time(s)");
         System.out.println("The order are listed below");
-        for(int i=0; i<counter[2]; i++){
+        for(int i=0;i<counter[2];i++){
             System.out.println(order[2][i] + 1 + ")");
         }
         System.out.println("\nThe number of reward for $100 is shown below");
         System.out.println(counter[3] + "time(s)");
         System.out.println("The order are listed below");
-        for(int i=0; i<counter[3]; i++){
+        for(int i=0;i<counter[3];i++){
             System.out.println(order[3][i] + 1 + ")");
         }
         System.out.println("\nThe number of reward for $7 is shown below");
         System.out.println(counter[4] + "time(s)");
         System.out.println("The order are listed below");
-        for(int i=0; i<counter[4]; i++){
+        for(int i=0;i<counter[4];i++){
             System.out.println(order[4][i] + 1 + ")");
         }
         System.out.println("\nThe number of reward for $4 is shown below");
         System.out.println(counter[5] + "time(s)");
         System.out.println("The order are listed below");
-        for(int i=0; i<counter[5]; i++){
+        for(int i=0;i<counter[5];i++){
             System.out.println(order[5][i] + 1 + ")");
+        }
+        System.out.print("Respectively, the encountered numbers are: " );
+        for(int i =0;i<6;i++){
+            System.out.print(counter[i]+" ");
         }
     }
     //generate ticket 5 normal balls and 1 power ball
